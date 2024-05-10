@@ -3,11 +3,8 @@ import { FeedUI } from '@ui-pages';
 
 import { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from '../../services/store';
-import { getFetchFeeds, feedsSelector } from '../../services/feedSlice';
-import {
-  getIngredients,
-  selectIngredients
-} from '../../services/ingredientsSlice';
+import { getFetchFeeds } from '../../services/feedSlice';
+import { getIngredients } from '../../services/ingredientsSlice';
 
 export const Feed: FC = () => {
   /** TODO: взять переменную из стора */
