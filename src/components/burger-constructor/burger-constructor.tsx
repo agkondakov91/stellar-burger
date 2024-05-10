@@ -9,7 +9,6 @@ import { clearConstructor } from '../../services/constructorBurgerSlice';
 export const BurgerConstructor: FC = () => {
   /** TODO: взять переменные constructorItems, orderRequest и orderModalData из стора */
   const constructorItems = useSelector((store) => store.constructorBurger);
-  console.log(constructorItems);
   const orderRequest = useSelector((store) => store.order.orderRequest);
   const orderModalData = useSelector((store) => store.order.orderModalData);
   const navigate = useNavigate();
