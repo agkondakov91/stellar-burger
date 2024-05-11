@@ -1,7 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { reducerIngredients } from './ingredientsSlice';
 import { reducerConstructorBurger } from './constructorBurgerSlice';
-import { reducerFeeds } from './feedSlice';
 import { reducerOrder } from './orderSlice';
 import { reducerUser } from './userSlice';
 
@@ -14,7 +13,6 @@ import {
 const rootReducer = combineReducers({
   ingredients: reducerIngredients,
   constructorBurger: reducerConstructorBurger,
-  feed: reducerFeeds,
   order: reducerOrder,
   user: reducerUser
 });

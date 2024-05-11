@@ -11,17 +11,21 @@ import {
   updateUserApi,
   logoutApi
 } from '@api';
-import { deleteCookie, setCookie } from '../utils/cookie';
+import { deleteCookie, setCookie, getCookie } from '../utils/cookie';
 
 export const authCheckUser = createAsyncThunk(
   'user/authCheckUser',
   async (_, { dispatch, rejectWithValue }) => {
-    try {
-      const data = await getUserApi();
-      return data.user;
-    } catch (err) {
-      return rejectWithValue(err);
-    } finally {
+    if (getCookie('accessToken')) {
+      getUserApi()
+        .then((res) => {
+          dispatch(checkUser(res.user));
+        })
+        .catch((err) => {
+          rejectWithValue(err);
+        })
+        .finally(() => dispatch(authCheck()));
+    } else {
       dispatch(authCheck());
     }
   }
@@ -29,11 +33,8 @@ export const authCheckUser = createAsyncThunk(
 
 export const fetchRegisterUser = createAsyncThunk(
   'user/registerUser',
-  async (userData: TRegisterData, { rejectWithValue }) => {
+  async (userData: TRegisterData) => {
     const data = await registerUserApi(userData);
-    if (!data.success) {
-      return rejectWithValue(data);
-    }
     setCookie('accessToken', data.accessToken);
     localStorage.setItem('refreshToken', data.refreshToken);
     return data.user;

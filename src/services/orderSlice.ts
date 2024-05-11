@@ -5,30 +5,31 @@ import {
   getOrderByNumberApi
 } from '@api';
 
-import { TOrder } from '@utils-types';
+import { TOrder, TOrdersData } from '@utils-types';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getFetchFeeds = createAsyncThunk(
   'order/getFetchFeeds',
-  async () => await getFeedsApi()
+  getFeedsApi
 );
 
 export const getFetchOrders = createAsyncThunk(
   'order/getFetchOrders',
-  async () => await getOrdersApi()
+  getOrdersApi
 );
 
 export const getFetchBurger = createAsyncThunk(
   'order/getFetchBurger',
-  async (orderData: string[]) => await orderBurgerApi(orderData)
+  orderBurgerApi
 );
 
 export const getFetchOrderByNumber = createAsyncThunk(
   'order/getFetchOrderByNumber',
-  async (number: number) => await getOrderByNumberApi(number)
+  getOrderByNumberApi
 );
 
 type TOrderState = {
+  feed: TOrdersData | null;
   orderData: TOrder[];
   orderRequest: boolean;
   orderModalData: TOrder | null;
@@ -37,6 +38,7 @@ type TOrderState = {
 };
 
 const initialState: TOrderState = {
+  feed: null,
   orderData: [],
   orderRequest: false,
   orderModalData: null,
@@ -67,6 +69,7 @@ const orderSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.orderData = action.payload.orders;
+        state.feed = action.payload;
         state.orderRequest = false;
       })
       .addCase(getFetchOrders.pending, (state) => {

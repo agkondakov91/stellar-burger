@@ -44,9 +44,14 @@ const constructorBurgerSlice = createSlice({
 
     removeIngredient: (state, action) => {
       if (action.payload.type !== 'bun') {
-        state.ingredients = state.ingredients.filter(
-          (ingredient) => ingredient._id !== action.payload._id
+        const idToRemove = action.payload._id;
+        const indexToRemove = state.ingredients.findIndex(
+          (ingredient) => ingredient._id === idToRemove
         );
+
+        if (indexToRemove !== -1) {
+          state.ingredients.splice(indexToRemove, 1);
+        }
       }
     },
 

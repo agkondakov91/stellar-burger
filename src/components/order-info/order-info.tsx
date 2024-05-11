@@ -4,7 +4,7 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useSelector, useDispatch } from '../../services/store';
 import { useParams } from 'react-router-dom';
-import { getIngredients } from '../../services/ingredientsSlice';
+import { getFetchOrderByNumber } from '../../services/orderSlice';
 
 export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
@@ -15,12 +15,10 @@ export const OrderInfo: FC = () => {
     (store) => store.ingredients.ingredients
   );
 
-  const feed = useSelector((store) => store.feed.feed);
-  const order = feed?.orders;
-  const orderData = order?.find((elem) => elem.number === Number(number));
+  const orderData = useSelector((store) => store.order.orderModalData);
 
   useEffect(() => {
-    dispatch(getIngredients());
+    dispatch(getFetchOrderByNumber(Number(number)));
   }, [dispatch]);
 
   /* Готовим данные для отображения */

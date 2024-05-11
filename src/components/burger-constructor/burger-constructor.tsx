@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useEffect } from 'react';
 import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { useSelector, useDispatch } from '../../services/store';
@@ -15,6 +15,13 @@ export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user.userData);
   const ingredients = constructorItems.ingredients.map((elem) => elem._id);
+
+  useEffect(
+    () => () => {
+      dispatch(orderReset());
+    },
+    []
+  );
 
   const onOrderClick = () => {
     if (!constructorItems.bun || orderRequest) return;
