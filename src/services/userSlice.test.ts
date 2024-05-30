@@ -12,8 +12,6 @@ import {
   initialState
 } from './userSlice';
 import { TUser } from '@utils-types';
-import * as cookieUtils from '../utils/cookie';
-import * as api from '../utils/burger-api';
 
 type ActionType = string;
 

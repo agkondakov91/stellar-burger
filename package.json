@@ -78,6 +78,7 @@
     "prettier-eslint": "^16.2.0",
     "prettier-eslint-cli": "^8.0.1",
     "react-test-renderer": "^18.2.0",
+    "start-server-and-test": "^2.0.3",
     "storybook": "^7.6.10",
     "storybook-addon-react-router-v6": "^2.0.10",
     "style-loader": "^3.3.3",
@@ -94,7 +95,9 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier ./src --write",
     "test": "jest --verbose",
-    "cypress:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:e2e": "start-server-and-test start http://localhost:4000 cy:run"
   },
   "eslintConfig": {
     "extends": [
