@@ -1,7 +1,7 @@
 {
   "success": true,
-  "accessToken": "eyJhbGciO",
-  "refreshToken": "6279efdbb",
+  "accessToken": "accessToken",
+  "refreshToken": "refreshToken",
   "user": {
     "email": "alextest001@mail.com",
     "name": "Alex01"
