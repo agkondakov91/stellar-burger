@@ -10,7 +10,7 @@ import {
   getUserApi,
   updateUserApi,
   logoutApi
-} from '@api';
+} from '../utils/burger-api';
 import { deleteCookie, setCookie, getCookie } from '../utils/cookie';
 
 export const authCheckUser = createAsyncThunk(
@@ -90,7 +90,7 @@ type TUserState = {
   error: string | undefined;
 };
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   isAuthChecked: false,
   userData: null,
   isLoading: false,

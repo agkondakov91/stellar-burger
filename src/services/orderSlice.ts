@@ -3,7 +3,7 @@ import {
   getOrdersApi,
   orderBurgerApi,
   getOrderByNumberApi
-} from '@api';
+} from '../utils/burger-api';
 
 import { TOrder, TOrdersData } from '@utils-types';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
@@ -37,7 +37,7 @@ type TOrderState = {
   error: string | null;
 };
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   feed: null,
   orderData: [],
   orderRequest: false,
@@ -46,7 +46,7 @@ const initialState: TOrderState = {
   error: null
 };
 
-const orderSlice = createSlice({
+export const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers: {
